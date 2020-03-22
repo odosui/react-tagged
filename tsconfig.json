@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es6",
     "module": "es6",
-    // "declaration": true,
+    "declaration": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -10,7 +10,8 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react"
+    "jsx": "react",
+    "declarationDir": "dist"
   },
   "exclude": ["node_modules"]
 }

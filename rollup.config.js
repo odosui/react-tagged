@@ -1,4 +1,4 @@
-import typescript from "@rollup/plugin-typescript";
+import ts from "@wessberg/rollup-plugin-ts";
 import size from "rollup-plugin-size";
 import { terser } from "rollup-plugin-terser";
 import postcss from "rollup-plugin-postcss";
@@ -12,7 +12,7 @@ export default {
   },
   external: ["react"],
   plugins: [
-    typescript(),
+    ts(),
     postcss({
       extract: true,
       minimize: true
