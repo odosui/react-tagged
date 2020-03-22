@@ -1,9 +1,9 @@
 {
   "name": "react-tagged",
-  "types": "dist/index.d.ts",
-  "version": "0.0.2",
-  "description": "A minimalistic React tags component",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "version": "0.0.3",
+  "description": "A minimalistic React tags component",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rollup --config"
