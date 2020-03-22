@@ -5,7 +5,7 @@
   "version": "0.0.3",
   "description": "A minimalistic React tags component",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "build": "rollup --config"
   },
   "peerDependencies": {
@@ -18,13 +18,16 @@
   "author": "Ianis Triandafilov",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^25.1.4",
     "@types/react": "^16.9.25",
     "@wessberg/rollup-plugin-ts": "^1.2.21",
+    "jest": "^25.1.0",
     "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "rollup-plugin-postcss": "^2.5.0",
     "rollup-plugin-size": "^0.2.2",
     "rollup-plugin-terser": "^5.3.0",
+    "ts-jest": "^25.2.1",
     "tslib": "^1.11.1",
     "typescript": "^3.8.3"
   }

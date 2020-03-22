@@ -92,6 +92,6 @@ function highlited(text: string, typed: string) {
 }
 
 // Utils
-function without<T>(arr: T[], el: T) {
+export function without<T>(arr: T[], el: T) {
   return arr.filter(e => e !== el);
 }
