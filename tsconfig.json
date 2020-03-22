@@ -10,9 +10,7 @@
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "react",
-    "outDir": "dist",
-    "moduleResolution": "node"
+    "jsx": "react"
   },
   "exclude": ["node_modules"]
 }

@@ -38,9 +38,9 @@ export const Tagged: React.FC<IProps> = memo(
     };
 
     return (
-      <div className="candl-tags">
+      <div className="react-tagged--tags">
         {tags.map((t, ind) => (
-          <div className="candl-tag" key={t}>
+          <div className="react-tagged--tag" key={t}>
             {t}
             <a
               href="#"
@@ -53,7 +53,7 @@ export const Tagged: React.FC<IProps> = memo(
             </a>
           </div>
         ))}
-        <div className="candl-tags-input-wrapper">
+        <div className="react-tagged--tags-input-wrapper">
           <input
             value={typed}
             type="text"
@@ -64,10 +64,10 @@ export const Tagged: React.FC<IProps> = memo(
             onKeyPress={handleKeyPress}
           />
           {sug.length > 0 && (
-            <div className="candl-tags-suggestions">
+            <div className="react-tagged--tags-suggestions">
               {sug.map(s => (
                 <div
-                  className="candl-tags-suggestions-item"
+                  className="react-tagged--tags-suggestions-item"
                   key={s}
                   dangerouslySetInnerHTML={highlited(s, typed)}
                   onClick={() => handleAdd(s)}

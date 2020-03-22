@@ -1,0 +1,45 @@
+.react-tagged--tags {
+  display: flex;
+  position: relative;
+  .react-tagged--tag {
+    margin-right: 10px;
+    border-radius: 5px;
+    padding: 0 5px;
+    background: #ccc;
+    color: white;
+    font-weight: bold;
+    font-size: 12px;
+    a {
+      color: white;
+      margin-left: 3px;
+    }
+  }
+  input {
+    height: 24px;
+    border-radius: 5px;
+    margin-bottom: 0;
+    padding: 3px 10px;
+    width: 100%;
+    border: 1px dashed;
+  }
+  .react-tagged--tags-input-wrapper {
+    position: relative;
+    width: 110px;
+  }
+  .react-tagged--tags-suggestions {
+    position: absolute;
+    background: white;
+    z-index: 100;
+    border: 1px solid #ccc;
+    width: 120px;
+    border-top: 0;
+    overflow-x: hidden;
+    .react-tagged--tags-suggestions-item {
+      padding: 5px 10px;
+      cursor: pointer;
+      &:hover {
+        background: #f1f1f1;
+      }
+    }
+  }
+}
