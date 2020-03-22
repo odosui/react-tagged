@@ -1,0 +1,20 @@
+{
+  "name": "react-tagged",
+  "types": "dist/index.d.ts",
+  "version": "0.0.1",
+  "description": "A minimalistic React tags component",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "peerDependencies": {
+    "react": "^16.6.3"
+  },
+  "keywords": [
+    "react",
+    "tags"
+  ],
+  "author": "Ianis Triandafilov",
+  "license": "ISC"
+}
