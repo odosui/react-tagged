@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "declaration": true,
+    "target": "es6",
+    "module": "es6",
+    // "declaration": true,
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react",
+    "outDir": "dist",
+    "moduleResolution": "node"
+  },
+  "exclude": ["node_modules"]
 }

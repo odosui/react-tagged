@@ -16,5 +16,9 @@
     "tags"
   ],
   "author": "Ianis Triandafilov",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^16.9.25",
+    "react": "^16.13.1"
+  }
 }
