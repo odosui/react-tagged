@@ -8,17 +8,37 @@ window.onload = () => {
   ReactDOM.render(<App />, el);
 };
 
+const countries = [
+  "Denmark",
+  "United Kingdom of Great Britain and Northern Ireland",
+  "Poland",
+  "Italy",
+  "Latvia"
+];
+
 const App: React.FC = () => {
   return (
     <div className="container">
-      <hr />
       <div>
-        <h1>Basic example</h1>
-        <code>{"<Tagged initialTags={['New-York']} />"}</code>
-        <br />
-        <Tagged initialTags={["New-York"]} />
+        <h4>Basic example</h4>
+        <Tagged initialTags={["London", "Paris", "New-York"]} />
+        <Code>
+          {'<Tagged initialTags={["London", "Paris", "New-York"]} />'}
+        </Code>
       </div>
       <hr />
+      <div>
+        <h4>Suggestions</h4>
+        <Code>
+          {'<Tagged initialTags={["London", "Paris", "New-York"]} />'}
+        </Code>
+        <br />
+        <Tagged initialTags={["Denmark"]} suggestions={countries} />
+      </div>
     </div>
   );
 };
+
+function Code({ children }: { children: React.ReactChildren | string }) {
+  return <pre className="code prettyprint">{children}</pre>;
+}
