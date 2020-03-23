@@ -3,8 +3,8 @@ import { memo, useState, useEffect } from "react";
 
 interface IProps {
   initialTags: string[];
-  suggestions: string[];
-  onChange: (tags: string[]) => void;
+  suggestions?: string[];
+  onChange?: (tags: string[]) => void;
 }
 
 export const Tagged: React.FC<IProps> = memo(
@@ -21,14 +21,14 @@ export const Tagged: React.FC<IProps> = memo(
     const handleDelete = (ind: number) => {
       const nt = without(tags, tags[ind]);
       setTags(nt);
-      onChange(nt);
+      onChange && onChange(nt);
     };
 
     const handleAdd = (tag: string) => {
       const nt = [...tags, tag];
       setTags(nt);
       setTyped("");
-      onChange(nt);
+      onChange && onChange(nt);
     };
 
     const handleKeyPress = (event: React.KeyboardEvent) => {
@@ -62,6 +62,7 @@ export const Tagged: React.FC<IProps> = memo(
               setTyped(value);
             }}
             onKeyPress={handleKeyPress}
+            className="react-tagged--input"
           />
           {sug.length > 0 && (
             <div className="react-tagged--tags-suggestions">
@@ -81,7 +82,8 @@ export const Tagged: React.FC<IProps> = memo(
   }
 );
 
-function suggest(txt: string, suggestions: string[]): string[] {
+function suggest(txt: string, suggestions: string[] = []): string[] {
+  console.log("txt", txt);
   return suggestions
     .filter(s => s.toLowerCase().includes(txt.toLowerCase()))
     .slice(0, 9);
@@ -91,7 +93,6 @@ function highlited(text: string, typed: string) {
   return { __html: text.replace(typed, `<b><u>${typed}</u></b>`) };
 }
 
-// Utils
-export function without<T>(arr: T[], el: T) {
+function without<T>(arr: T[], el: T) {
   return arr.filter(e => e !== el);
 }

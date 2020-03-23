@@ -17,7 +17,6 @@ export default {
       extract: true,
       minimize: true
     }),
-    terser(),
-    size()
+    terser()
   ]
 };
