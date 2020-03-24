@@ -1,11 +1,11 @@
 import * as React from "react";
 import { memo, useState, useEffect } from "react";
-import { suggest, highlited, without } from "./utils";
+import { suggest, highlited, without, moveCycled } from "./utils";
 
 export const INPUT_DEFAULT_PLACEHOLDER = "Add New Tag";
 
 interface IProps {
-  initialTags?: string[];
+  initialTags: string[];
   suggestions?: string[];
   onChange?: (tags: string[]) => void;
   suggestionWrapPattern?: string;
@@ -16,7 +16,7 @@ interface IProps {
 
 export const Tagged: React.FC<IProps> = memo(
   ({
-    initialTags = [],
+    initialTags,
     suggestions = [],
     onChange,
     suggestionWrapPattern,
@@ -26,10 +26,15 @@ export const Tagged: React.FC<IProps> = memo(
   }) => {
     const [tags, setTags] = useState([] as string[]);
     const [typed, setTyped] = useState("");
+    const [cursor, setCursor] = useState(-1);
 
     useEffect(() => {
       setTags(initialTags);
     }, [initialTags]);
+
+    useEffect(() => {
+      setCursor(-1);
+    }, [typed]);
 
     const handleDelete = (ind: number) => {
       const nt = without(tags, tags[ind]);
@@ -51,19 +56,41 @@ export const Tagged: React.FC<IProps> = memo(
       onChange && onChange(nt);
     };
 
+    const sug = filterSuggestions(
+      typed,
+      suggestionsThreshold,
+      tags,
+      suggestions
+    );
+
     const handleKeyPress = ({ key }: React.KeyboardEvent) => {
       if (key === "Enter" && typed) {
-        handleAdd(typed);
+        if (cursor > -1) {
+          handleAdd(sug[cursor]);
+        } else {
+          handleAdd(typed);
+        }
       }
     };
 
-    const handleKeyDown = ({ key }: React.KeyboardEvent) => {
+    const moveCursor = (diff: 1 | -1) => {
+      setCursor(moveCycled(cursor, diff, sug.length));
+    };
+
+    const handleKeyDown = (e: React.KeyboardEvent) => {
+      const { key, keyCode } = e;
       if (key === "Escape" || key === "Esc") {
         setTyped("");
       }
-    };
 
-    let sug = filterSuggestions(typed, suggestionsThreshold, tags, suggestions);
+      if (keyCode === 38) {
+        e.preventDefault();
+        moveCursor(-1);
+      } else if (keyCode === 40) {
+        e.preventDefault();
+        moveCursor(1);
+      }
+    };
 
     return (
       <div className="react-tagged--tags">
@@ -99,9 +126,11 @@ export const Tagged: React.FC<IProps> = memo(
           />
           {sug.length > 0 && (
             <div className="react-tagged--tags-suggestions">
-              {sug.map(s => (
+              {sug.map((s, ind) => (
                 <div
-                  className="react-tagged--tags-suggestions-item"
+                  className={`react-tagged--tags-suggestions-item ${
+                    cursor === ind ? "selected" : ""
+                  }`}
                   key={s}
                   dangerouslySetInnerHTML={{
                     __html: highlited(s, typed, suggestionWrapPattern)

@@ -14,3 +14,19 @@ export function highlited(
 export function without<T>(arr: T[], el: T) {
   return arr.filter(e => e !== el);
 }
+
+export function moveCycled(pointer: number, step: number, totalCount: number) {
+  let next = pointer;
+  if (!next && next !== 0) {
+    next = -1;
+  }
+  next = next + step;
+  if (next < 0) {
+    next = totalCount - 1;
+  }
+
+  if (next >= totalCount) {
+    next = 0;
+  }
+  return next;
+}

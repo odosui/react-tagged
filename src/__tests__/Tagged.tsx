@@ -176,7 +176,12 @@ test("suggestions threshold", () => {
   ];
 
   const { queryByText, getByPlaceholderText } = render(
-    <Tagged suggestions={countries} suggestionsThreshold={2} />
+    <Tagged
+      initialTags={[]}
+      suggestions={countries}
+      suggestionsThreshold={2}
+      suggestionWrapPattern="$1"
+    />
   );
 
   const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
@@ -187,6 +192,31 @@ test("suggestions threshold", () => {
   expect(queryByText("Denmark")).toBeInTheDocument();
 });
 
+test("pickup from suggestion with arrows", () => {
+  const countries = [
+    "Denmark",
+    "United Kingdom of Great Britain and Northern Ireland",
+    "Poland",
+    "Italy",
+    "Latvia"
+  ];
+
+  const { queryByText, getByPlaceholderText, getByText } = render(
+    <Tagged
+      initialTags={[]}
+      suggestions={countries}
+      suggestionWrapPattern="$1"
+    />
+  );
+
+  expect(queryByText("Denmark")).not.toBeInTheDocument();
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
+  fireEvent.change(input, { target: { value: "d" } });
+  pressDown(input);
+  pressEnter(input);
+  expect(getByText("Denmark")).toBeInTheDocument();
+});
+
 // UTILS
 
 function pressEnter(input: HTMLElement) {
@@ -195,6 +225,10 @@ function pressEnter(input: HTMLElement) {
 
 function pressEscape(input: HTMLElement) {
   fireEvent.keyDown(input, { key: "Escape", code: 27, charCode: 27 });
+}
+
+function pressDown(input: HTMLElement) {
+  fireEvent.keyDown(input, { code: 40, charCode: 40, keyCode: 40 });
 }
 
 function fill(input: HTMLElement, value: string) {

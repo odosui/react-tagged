@@ -62,7 +62,8 @@ input[type="text"].react-tagged--input {
   padding: 5px 10px;
   font-size: $font-size;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &.selected {
     background: #f1f1f1;
   }
 }
