@@ -44,6 +44,38 @@ const App: React.FC = () => {
 />`}
         </Code>
       </div>
+      <hr />
+      <div>
+        <h3>Custom placeholder</h3>
+        <Tagged
+          initialTags={["Denmark"]}
+          suggestions={countries}
+          inputPlaceholder={"Press enter"}
+        />
+        <Code>
+          {`<Tagged
+  initialTags={["Denmark"]}
+  suggestions={countries}
+  inputPlaceholder={"Press enter"}
+/>`}
+        </Code>
+      </div>
+      <hr />
+      <div>
+        <h3>With suggestion treshold</h3>
+        <Tagged
+          initialTags={["Denmark"]}
+          suggestions={countries}
+          suggestionsThreshold={2}
+        />
+        <Code>
+          {`<Tagged
+  initialTags={["Denmark"]}
+  suggestions={countries}
+  suggestionsThreshold={2}
+/>`}
+        </Code>
+      </div>
     </div>
   );
 };

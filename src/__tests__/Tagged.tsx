@@ -166,6 +166,27 @@ test("custom placeholder", () => {
   expect(queryByPlaceholderText("Press enter")).toBeInTheDocument();
 });
 
+test("suggestions threshold", () => {
+  const countries = [
+    "Denmark",
+    "United Kingdom of Great Britain and Northern Ireland",
+    "Poland",
+    "Italy",
+    "Latvia"
+  ];
+
+  const { queryByText, getByPlaceholderText } = render(
+    <Tagged suggestions={countries} suggestionsThreshold={2} />
+  );
+
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
+  fireEvent.change(input, { target: { value: "d" } });
+  expect(queryByText("Denmark")).not.toBeInTheDocument();
+
+  fireEvent.change(input, { target: { value: "de" } });
+  expect(queryByText("Denmark")).toBeInTheDocument();
+});
+
 // UTILS
 
 function pressEnter(input: HTMLElement) {
@@ -184,7 +205,6 @@ function fill(input: HTMLElement, value: string) {
 // TODO: arrows to move among suggestions
 // TODO: Custom suggestion function
 // TODO: suggestion debounce?
-// TODO: suggest letters typed length treshold
 // TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count
 // TODO: sort alphabetically on add

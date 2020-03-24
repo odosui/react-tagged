@@ -2,25 +2,27 @@ import * as React from "react";
 import { memo, useState, useEffect } from "react";
 import { suggest, highlited, without } from "./utils";
 
+export const INPUT_DEFAULT_PLACEHOLDER = "Add New Tag";
+
 interface IProps {
-  initialTags: string[];
+  initialTags?: string[];
   suggestions?: string[];
   onChange?: (tags: string[]) => void;
   suggestionWrapPattern?: string;
   allowCustom?: boolean;
   inputPlaceholder?: string;
+  suggestionsThreshold?: number;
 }
-
-export const INPUT_DEFAULT_PLACEHOLDER = "Add New Tag";
 
 export const Tagged: React.FC<IProps> = memo(
   ({
-    initialTags,
-    suggestions,
+    initialTags = [],
+    suggestions = [],
     onChange,
     suggestionWrapPattern,
     allowCustom = true,
-    inputPlaceholder = INPUT_DEFAULT_PLACEHOLDER
+    inputPlaceholder = INPUT_DEFAULT_PLACEHOLDER,
+    suggestionsThreshold = 1
   }) => {
     const [tags, setTags] = useState([] as string[]);
     const [typed, setTyped] = useState("");
@@ -36,7 +38,7 @@ export const Tagged: React.FC<IProps> = memo(
     };
 
     const handleAdd = (tag: string) => {
-      if (!allowCustom && (suggestions || []).indexOf(tag) === -1) {
+      if (!allowCustom && suggestions.indexOf(tag) === -1) {
         return;
       }
 
@@ -61,11 +63,7 @@ export const Tagged: React.FC<IProps> = memo(
       }
     };
 
-    const sug = typed
-      ? suggest(typed, suggestions).filter(
-          s => tags.map(t => t.toLowerCase()).indexOf(s.toLowerCase()) === -1
-        )
-      : [];
+    let sug = filterSuggestions(typed, suggestionsThreshold, tags, suggestions);
 
     return (
       <div className="react-tagged--tags">
@@ -118,3 +116,24 @@ export const Tagged: React.FC<IProps> = memo(
     );
   }
 );
+
+function filterSuggestions(
+  typed: string,
+  suggestionsThreshold: number,
+  tags: string[],
+  suggestions: string[]
+) {
+  let sug: string[] = [];
+  if (typed && typed.trim().length >= suggestionsThreshold) {
+    const trimed = typed.trim();
+    if (trimed.length > 0) {
+      sug = suggest(typed, suggestions).filter(
+        s => tags.map(t => t.toLowerCase()).indexOf(s.toLowerCase()) === -1
+      );
+    } else {
+      sug = suggestions;
+    }
+    sug = sug.slice(0, 9);
+  }
+  return sug;
+}

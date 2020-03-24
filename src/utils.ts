@@ -1,7 +1,5 @@
 export function suggest(txt: string, suggestions: string[] = []): string[] {
-  return suggestions
-    .filter(s => s.toLowerCase().includes(txt.toLowerCase()))
-    .slice(0, 9);
+  return suggestions.filter(s => s.toLowerCase().includes(txt.toLowerCase()));
 }
 
 export function highlited(
