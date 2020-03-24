@@ -27,7 +27,22 @@ const App: React.FC = () => {
   suggestions={countries}
 />`}
         </Code>
-        <br />
+      </div>
+      <hr />
+      <div>
+        <h4>Forbid custom tags</h4>
+        <Tagged
+          initialTags={["Denmark"]}
+          suggestions={countries}
+          allowCustom={false}
+        />
+        <Code>
+          {`<Tagged
+  initialTags={["Denmark"]}
+  suggestions={countries}
+  allowCustom={false}
+/>`}
+        </Code>
       </div>
     </div>
   );

@@ -27,12 +27,44 @@ test("adds a typed tag", () => {
   expect(getByText("second")).toBeInTheDocument();
 });
 
+test("should not duplicate tags", () => {
+  const { queryAllByText, getByPlaceholderText } = render(
+    <Tagged initialTags={[]} />
+  );
+  const input = getByPlaceholderText("Add New Tag");
+  fill(input, "first");
+  pressEnter(input);
+  expect(queryAllByText("first").length).toBe(1);
+
+  fill(input, "first");
+  pressEnter(input);
+  expect(queryAllByText("first").length).toBe(1);
+});
+
 test("adds a clicked on suggestion tag", () => {
   // TODO
 });
 
 test("removes tags by clicking on x", () => {
   // TODO
+});
+
+test("with allowCustom={false}, it only allows suggestions", () => {
+  const { queryByText, getByPlaceholderText } = render(
+    <Tagged
+      initialTags={[]}
+      suggestions={["sun", "moon"]}
+      allowCustom={false}
+    />
+  );
+  const input = getByPlaceholderText("Add New Tag");
+  fill(input, "stars");
+  pressEnter(input);
+  expect(queryByText("stars")).not.toBeInTheDocument();
+
+  fill(input, "moon");
+  pressEnter(input);
+  expect(queryByText("moon")).toBeInTheDocument();
 });
 
 test("doesn't suggest what's already picked", () => {

@@ -7,10 +7,17 @@ interface IProps {
   suggestions?: string[];
   onChange?: (tags: string[]) => void;
   suggestionWrapPattern?: string;
+  allowCustom?: boolean;
 }
 
 export const Tagged: React.FC<IProps> = memo(
-  ({ initialTags, suggestions, onChange, suggestionWrapPattern }) => {
+  ({
+    initialTags,
+    suggestions,
+    onChange,
+    suggestionWrapPattern,
+    allowCustom = true
+  }) => {
     const [tags, setTags] = useState([] as string[]);
     const [typed, setTyped] = useState("");
 
@@ -25,6 +32,13 @@ export const Tagged: React.FC<IProps> = memo(
     };
 
     const handleAdd = (tag: string) => {
+      if (!allowCustom && (suggestions || []).indexOf(tag) === -1) {
+        return;
+      }
+
+      if (tags.indexOf(tag) > -1) {
+        return;
+      }
       const nt = [...tags, tag];
       setTags(nt);
       setTyped("");
