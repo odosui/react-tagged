@@ -27,6 +27,47 @@ test("adds a typed tag", () => {
   expect(getByText("second")).toBeInTheDocument();
 });
 
+test("adds a clicked on suggestion tag", () => {
+  // TODO
+});
+
+test("removes tags by clicking on x", () => {
+  // TODO
+});
+
+test("doesn't suggest what's already picked", () => {
+  const countries = [
+    "Denmark",
+    "United Kingdom of Great Britain and Northern Ireland",
+    "Poland",
+    "Italy",
+    "Latvia"
+  ];
+
+  const tags = ["initial", "tags"];
+
+  const { queryByText, queryAllByText, getByPlaceholderText } = render(
+    <Tagged
+      initialTags={tags}
+      suggestions={countries}
+      suggestionWrapPattern={"$1"}
+    />
+  );
+
+  const input = getByPlaceholderText("Add New Tag");
+  fill(input, "den");
+  expect(queryByText("Denmark")).toBeInTheDocument();
+  expect(queryByText("Denmark")).toHaveClass(
+    "react-tagged--tags-suggestions-item"
+  );
+
+  fill(input, "Denmark");
+  pressEnter(input);
+  expect(queryAllByText("Denmark").length).toBe(1);
+  fill(input, "den");
+  expect(queryAllByText("Denmark").length).toBe(1);
+});
+
 test("on Esc it clears the textbox and hides suggestions", () => {
   const { queryByText, getByPlaceholderText } = render(
     <Tagged initialTags={[]} suggestions={["test"]} />
@@ -84,8 +125,6 @@ test("filters suggestions by query", () => {
   });
 });
 
-test("adds a clicked on suggestion tag", () => {});
-
 // UTILS
 
 function pressEnter(input: HTMLElement) {
@@ -101,11 +140,10 @@ function fill(input: HTMLElement, value: string) {
 }
 
 // TODO: arrows to move among suggestions
-// TODO: Don't show in suggestions what already typed
 // TODO: Custom suggestion function
 // TODO: suggestion debounce?
 // TODO: placeholder for the input element
-// TODO: suggest letters typed treshold
+// TODO: suggest letters typed length treshold
 // TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count
 // TODO: sort alphabetically on add

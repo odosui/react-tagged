@@ -1,7 +1,5 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { Tagged } from "../src/index";
 
@@ -42,9 +40,5 @@ const App: React.FC = () => {
 };
 
 function Code({ children }: { children: React.ReactChildren | string }) {
-  return (
-    <SyntaxHighlighter language="jsx" style={dark}>
-      {children}
-    </SyntaxHighlighter>
-  );
+  return <pre className="code prettyprint">{children}</pre>;
 }

@@ -18,8 +18,6 @@ export const Tagged: React.FC<IProps> = memo(
       setTags(initialTags);
     }, [initialTags]);
 
-    const sug = typed ? suggest(typed, suggestions) : [];
-
     const handleDelete = (ind: number) => {
       const nt = without(tags, tags[ind]);
       setTags(nt);
@@ -44,6 +42,12 @@ export const Tagged: React.FC<IProps> = memo(
         setTyped("");
       }
     };
+
+    const sug = typed
+      ? suggest(typed, suggestions).filter(
+          s => tags.map(t => t.toLowerCase()).indexOf(s.toLowerCase()) === -1
+        )
+      : [];
 
     return (
       <div className="react-tagged--tags">
