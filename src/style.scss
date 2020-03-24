@@ -1,4 +1,4 @@
-$tag-bg: #aaa;
+$tag-bg: #900b3e;
 $font-size: 12px;
 
 .react-tagged--tags {
@@ -22,12 +22,12 @@ $font-size: 12px;
   }
 }
 input[type="text"].react-tagged--input {
-  height: 24px;
+  height: 26px;
   border-radius: 5px;
   margin-bottom: 0;
   padding: 3px 10px;
   width: 100%;
-  border: 1px dashed;
+  border: 1px dashed #aaa;
   font-size: $font-size;
 }
 .react-tagged--tags-input-wrapper {

@@ -1,5 +1,6 @@
 import * as React from "react";
 import { memo, useState, useEffect } from "react";
+import { suggest, highlited, without } from "./utils";
 
 interface IProps {
   initialTags: string[];
@@ -31,9 +32,15 @@ export const Tagged: React.FC<IProps> = memo(
       onChange && onChange(nt);
     };
 
-    const handleKeyPress = (event: React.KeyboardEvent) => {
-      if (event.key === "Enter" && typed) {
+    const handleKeyPress = ({ key }: React.KeyboardEvent) => {
+      if (key === "Enter" && typed) {
         handleAdd(typed);
+      }
+    };
+
+    const handleKeyDown = ({ key }: React.KeyboardEvent) => {
+      if (key === "Escape" || key === "Esc") {
+        setTyped("");
       }
     };
 
@@ -62,6 +69,7 @@ export const Tagged: React.FC<IProps> = memo(
               setTyped(value);
             }}
             onKeyPress={handleKeyPress}
+            onKeyDown={handleKeyDown}
             className="react-tagged--input"
           />
           {sug.length > 0 && (
@@ -70,7 +78,7 @@ export const Tagged: React.FC<IProps> = memo(
                 <div
                   className="react-tagged--tags-suggestions-item"
                   key={s}
-                  dangerouslySetInnerHTML={highlited(s, typed)}
+                  dangerouslySetInnerHTML={{ __html: highlited(s, typed) }}
                   onClick={() => handleAdd(s)}
                 />
               ))}
@@ -81,18 +89,3 @@ export const Tagged: React.FC<IProps> = memo(
     );
   }
 );
-
-function suggest(txt: string, suggestions: string[] = []): string[] {
-  console.log("txt", txt);
-  return suggestions
-    .filter(s => s.toLowerCase().includes(txt.toLowerCase()))
-    .slice(0, 9);
-}
-
-function highlited(text: string, typed: string) {
-  return { __html: text.replace(typed, `<b><u>${typed}</u></b>`) };
-}
-
-function without<T>(arr: T[], el: T) {
-  return arr.filter(e => e !== el);
-}
