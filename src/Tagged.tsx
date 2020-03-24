@@ -6,10 +6,11 @@ interface IProps {
   initialTags: string[];
   suggestions?: string[];
   onChange?: (tags: string[]) => void;
+  suggestionWrapPattern?: string;
 }
 
 export const Tagged: React.FC<IProps> = memo(
-  ({ initialTags, suggestions, onChange }) => {
+  ({ initialTags, suggestions, onChange, suggestionWrapPattern }) => {
     const [tags, setTags] = useState([] as string[]);
     const [typed, setTyped] = useState("");
 
@@ -78,7 +79,9 @@ export const Tagged: React.FC<IProps> = memo(
                 <div
                   className="react-tagged--tags-suggestions-item"
                   key={s}
-                  dangerouslySetInnerHTML={{ __html: highlited(s, typed) }}
+                  dangerouslySetInnerHTML={{
+                    __html: highlited(s, typed, suggestionWrapPattern)
+                  }}
                   onClick={() => handleAdd(s)}
                 />
               ))}

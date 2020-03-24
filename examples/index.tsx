@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import { Tagged } from "../src/index";
 
@@ -29,16 +31,20 @@ const App: React.FC = () => {
       <hr />
       <div>
         <h4>Suggestions</h4>
+        <Tagged initialTags={["Denmark"]} suggestions={countries} />
         <Code>
-          {'<Tagged initialTags={["London", "Paris", "New-York"]} />'}
+          {'<Tagged initialTags={["Denmark"]} suggestions={countries} />'}
         </Code>
         <br />
-        <Tagged initialTags={["Denmark"]} suggestions={countries} />
       </div>
     </div>
   );
 };
 
 function Code({ children }: { children: React.ReactChildren | string }) {
-  return <pre className="code prettyprint">{children}</pre>;
+  return (
+    <SyntaxHighlighter language="jsx" style={dark}>
+      {children}
+    </SyntaxHighlighter>
+  );
 }
