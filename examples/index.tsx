@@ -19,7 +19,7 @@ const App: React.FC = () => {
   return (
     <div className="container">
       <div>
-        <h4>Simple example with suggestions</h4>
+        <h3>Simple example with suggestions</h3>
         <Tagged initialTags={["Denmark"]} suggestions={countries} />
         <Code>
           {`<Tagged
@@ -30,7 +30,7 @@ const App: React.FC = () => {
       </div>
       <hr />
       <div>
-        <h4>Forbid custom tags</h4>
+        <h3>Forbid custom tags</h3>
         <Tagged
           initialTags={["Denmark"]}
           suggestions={countries}

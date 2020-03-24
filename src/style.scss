@@ -5,6 +5,7 @@ $border-radius: 5px;
 .react-tagged--tags {
   display: flex;
   position: relative;
+  flex-wrap: wrap;
 }
 .react-tagged--tag {
   margin-right: 10px;

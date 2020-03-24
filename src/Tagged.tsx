@@ -8,7 +8,10 @@ interface IProps {
   onChange?: (tags: string[]) => void;
   suggestionWrapPattern?: string;
   allowCustom?: boolean;
+  inputPlaceholder?: string;
 }
+
+export const INPUT_DEFAULT_PLACEHOLDER = "Add New Tag";
 
 export const Tagged: React.FC<IProps> = memo(
   ({
@@ -16,7 +19,8 @@ export const Tagged: React.FC<IProps> = memo(
     suggestions,
     onChange,
     suggestionWrapPattern,
-    allowCustom = true
+    allowCustom = true,
+    inputPlaceholder = INPUT_DEFAULT_PLACEHOLDER
   }) => {
     const [tags, setTags] = useState([] as string[]);
     const [typed, setTyped] = useState("");
@@ -87,7 +91,7 @@ export const Tagged: React.FC<IProps> = memo(
           <input
             value={typed}
             type="text"
-            placeholder="Add New Tag"
+            placeholder={inputPlaceholder}
             onChange={({ target: { value } }) => {
               setTyped(value);
             }}

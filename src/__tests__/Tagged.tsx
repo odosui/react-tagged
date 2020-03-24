@@ -1,7 +1,7 @@
 import * as React from "react";
 import "@testing-library/jest-dom";
 import { render, fireEvent } from "@testing-library/react";
-import { Tagged } from "../Tagged";
+import { Tagged, INPUT_DEFAULT_PLACEHOLDER } from "../Tagged";
 
 test("renders tags", () => {
   const tags = ["this", "is"];
@@ -17,7 +17,7 @@ test("adds a typed tag", () => {
   const { getByText, getByPlaceholderText } = render(
     <Tagged initialTags={[]} />
   );
-  const input = getByPlaceholderText("Add New Tag");
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
   fill(input, "first");
   pressEnter(input);
   expect(getByText("first")).toBeInTheDocument();
@@ -31,7 +31,7 @@ test("should not duplicate tags", () => {
   const { queryAllByText, getByPlaceholderText } = render(
     <Tagged initialTags={[]} />
   );
-  const input = getByPlaceholderText("Add New Tag");
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
   fill(input, "first");
   pressEnter(input);
   expect(queryAllByText("first").length).toBe(1);
@@ -57,7 +57,7 @@ test("with allowCustom={false}, it only allows suggestions", () => {
       allowCustom={false}
     />
   );
-  const input = getByPlaceholderText("Add New Tag");
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
   fill(input, "stars");
   pressEnter(input);
   expect(queryByText("stars")).not.toBeInTheDocument();
@@ -86,7 +86,7 @@ test("doesn't suggest what's already picked", () => {
     />
   );
 
-  const input = getByPlaceholderText("Add New Tag");
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
   fill(input, "den");
   expect(queryByText("Denmark")).toBeInTheDocument();
   expect(queryByText("Denmark")).toHaveClass(
@@ -104,7 +104,9 @@ test("on Esc it clears the textbox and hides suggestions", () => {
   const { queryByText, getByPlaceholderText } = render(
     <Tagged initialTags={[]} suggestions={["test"]} />
   );
-  const input = getByPlaceholderText("Add New Tag") as HTMLInputElement;
+  const input = getByPlaceholderText(
+    INPUT_DEFAULT_PLACEHOLDER
+  ) as HTMLInputElement;
   fill(input, "t");
   expect(input.value).toBe("t");
   expect(queryByText("es")).toBeInTheDocument(); // in suggestions box
@@ -131,7 +133,7 @@ test("filters suggestions by query", () => {
       suggestionWrapPattern={"$1"}
     />
   );
-  const input = getByPlaceholderText("Add New Tag");
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
   fireEvent.change(input, { target: { value: "den" } });
   ["Denmark"].forEach(s => {
     expect(queryByText(s)).toBeInTheDocument();
@@ -157,6 +159,13 @@ test("filters suggestions by query", () => {
   });
 });
 
+test("custom placeholder", () => {
+  const { queryByPlaceholderText } = render(
+    <Tagged initialTags={[]} inputPlaceholder={"Press enter"} />
+  );
+  expect(queryByPlaceholderText("Press enter")).toBeInTheDocument();
+});
+
 // UTILS
 
 function pressEnter(input: HTMLElement) {
@@ -175,7 +184,6 @@ function fill(input: HTMLElement, value: string) {
 // TODO: arrows to move among suggestions
 // TODO: Custom suggestion function
 // TODO: suggestion debounce?
-// TODO: placeholder for the input element
 // TODO: suggest letters typed length treshold
 // TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count
