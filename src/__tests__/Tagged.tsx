@@ -139,6 +139,7 @@ function fill(input: HTMLElement, value: string) {
   fireEvent.change(input, { target: { value } });
 }
 
+// TODO: nice animations on add and remove
 // TODO: arrows to move among suggestions
 // TODO: Custom suggestion function
 // TODO: suggestion debounce?
@@ -148,3 +149,5 @@ function fill(input: HTMLElement, value: string) {
 // TODO: suggestions count
 // TODO: sort alphabetically on add
 // TODO: suggest on click into
+// TODO: BUG / I can add an empty string
+// TODO: auto focus

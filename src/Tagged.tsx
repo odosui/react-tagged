@@ -65,7 +65,11 @@ export const Tagged: React.FC<IProps> = memo(
             </a>
           </div>
         ))}
-        <div className="react-tagged--tags-input-wrapper">
+        <div
+          className={`react-tagged--tags-input-wrapper ${
+            sug.length > 0 ? "with-suggestions" : ""
+          }`}
+        >
           <input
             value={typed}
             type="text"

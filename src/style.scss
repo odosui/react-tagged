@@ -1,5 +1,6 @@
 $tag-bg: #c70039;
 $font-size: 12px;
+$border-radius: 5px;
 
 .react-tagged--tags {
   display: flex;
@@ -23,25 +24,38 @@ $font-size: 12px;
 }
 input[type="text"].react-tagged--input {
   height: 26px;
-  border-radius: 5px;
   margin-bottom: 0;
   padding: 3px 10px;
   width: 100%;
-  border: 1px dashed #aaa;
   font-size: $font-size;
+  border: 0;
 }
 .react-tagged--tags-input-wrapper {
+  border-radius: $border-radius;
   position: relative;
   width: 110px;
+  transition: box-shadow 0.2s ease-in;
+  border: 1px dashed #aaa;
+  &.with-suggestions {
+    box-shadow: 0 3px 5px rgba(71, 80, 89, 0.15);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border: 1px solid #aaa;
+  }
 }
 .react-tagged--tags-suggestions {
   position: absolute;
+  width: calc(100% + 2px);
+  left: -1px;
   background: white;
   z-index: 100;
-  border: 1px solid #ccc;
-  width: 120px;
   border-top: 0;
   overflow-x: hidden;
+  box-shadow: 0 3px 5px rgba(71, 80, 89, 0.15);
+  border-bottom-left-radius: $border-radius;
+  border-bottom-right-radius: $border-radius;
+  border: 1px solid #aaa;
+  border-top: 0;
 }
 .react-tagged--tags-suggestions-item {
   padding: 5px 10px;
