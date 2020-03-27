@@ -236,8 +236,7 @@ function fill(input: HTMLElement, value: string) {
 }
 
 // TODO: nice animations on add and remove
-// TODO: arrows to move among suggestions
-// TODO: Custom suggestion function
+// TODO: Custom async suggestion function
 // TODO: suggestion debounce?
 // TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count

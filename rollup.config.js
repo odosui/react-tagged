@@ -1,5 +1,4 @@
 import ts from "@wessberg/rollup-plugin-ts";
-import size from "rollup-plugin-size";
 import { terser } from "rollup-plugin-terser";
 import postcss from "rollup-plugin-postcss";
 
