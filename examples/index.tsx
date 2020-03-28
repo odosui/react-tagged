@@ -20,10 +20,10 @@ const App: React.FC = () => {
     <div className="container">
       <div>
         <h3>Simple example with suggestions</h3>
-        <Tagged initialTags={["Denmark"]} suggestions={countries} />
+        <Tagged initialTags={["Denmark", "Finland"]} suggestions={countries} />
         <Code>
           {`<Tagged
-  initialTags={["Denmark"]}
+  initialTags={["Denmark", "Finland"]}
   suggestions={countries}
 />`}
         </Code>

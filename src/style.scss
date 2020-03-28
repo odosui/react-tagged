@@ -67,3 +67,19 @@ input[type="text"].react-tagged--input {
     background: #f1f1f1;
   }
 }
+
+.react-tagged--tag-enter {
+  transition: max-width 0.2s ease-out;
+  max-width: 0;
+  &.react-tagged--tag-enter-active {
+    max-width: 100px;
+  }
+}
+
+.react-tagged--tag-leave {
+  transition: max-width 0.2s ease-out;
+  max-width: 100px;
+  &.react-tagged--tag-leave-active {
+    max-width: 0;
+  }
+}
