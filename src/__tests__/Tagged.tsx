@@ -217,7 +217,7 @@ test("pickup from suggestion with arrows", () => {
   expect(getByText("Denmark")).toBeInTheDocument();
 });
 
-// UTILS
+// HELPERS
 
 function pressEnter(input: HTMLElement) {
   fireEvent.keyPress(input, { key: "Enter", code: 13, charCode: 13 });
@@ -236,11 +236,12 @@ function fill(input: HTMLElement, value: string) {
 }
 
 // TODO: nice animations on add and remove
-// TODO: Custom async suggestion function
-// TODO: suggestion debounce?
 // TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count
-// TODO: sort alphabetically on add
-// TODO: suggest on click into
 // TODO: BUG / I can add an empty string
 // TODO: auto focus
+// --- release ---
+// TODO: custom async suggestion function
+// TODO: sort alphabetically on add
+// TODO: suggestion debounce?
+// TODO: suggest on click into
