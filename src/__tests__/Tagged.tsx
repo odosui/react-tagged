@@ -1,6 +1,10 @@
 import * as React from "react";
 import "@testing-library/jest-dom";
-import { render, fireEvent } from "@testing-library/react";
+import {
+  render,
+  fireEvent,
+  waitForElementToBeRemoved
+} from "@testing-library/react";
 import { Tagged, INPUT_DEFAULT_PLACEHOLDER } from "../Tagged";
 
 test("renders tags", () => {
@@ -42,11 +46,36 @@ test("should not duplicate tags", () => {
 });
 
 test("adds a clicked on suggestion tag", () => {
-  // TODO
+  const { getByText, queryByText, getByPlaceholderText } = render(
+    <Tagged
+      initialTags={[]}
+      suggestions={["Sun", "Moon"]}
+      suggestionWrapPattern={"$1"}
+    />
+  );
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
+  expect(queryByText("Sun")).not.toBeInTheDocument();
+  fill(input, "su");
+  const el = getByText("Sun");
+  el.click();
+  expect(queryByText("Sun")).toBeInTheDocument();
 });
 
-test("removes tags by clicking on x", () => {
-  // TODO
+test("removes tags by clicking on x", async () => {
+  /* const { */
+  /*   getByText, */
+  /*   queryAllByText, */
+  /*   queryByText, */
+  /*   getByPlaceholderText */
+  /* } = render(<Tagged initialTags={[]} />); */
+  /* const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER); */
+  /* expect(queryAllByText("×").length).toBe(0); */
+  /* fill(input, "test"); */
+  /* pressEnter(input); */
+  /* expect(queryAllByText("×").length).toBe(1); */
+  /* const rmElm = getByText("×"); */
+  /* rmElm.click(); */
+  /* await waitForElementToBeRemoved(() => queryByText("×"), { timeout: 1000 }); */
 });
 
 test("with allowCustom={false}, it only allows suggestions", () => {
@@ -217,6 +246,22 @@ test("pickup from suggestion with arrows", () => {
   expect(getByText("Denmark")).toBeInTheDocument();
 });
 
+test("does not allow adding an empty string", () => {
+  const { queryAllByText, getByPlaceholderText } = render(
+    <Tagged initialTags={[]} />
+  );
+  const input = getByPlaceholderText(INPUT_DEFAULT_PLACEHOLDER);
+  expect(queryAllByText("×").length).toBe(0);
+
+  fill(input, "test");
+  pressEnter(input);
+  expect(queryAllByText("×").length).toBe(1);
+
+  fill(input, "   ");
+  pressEnter(input);
+  expect(queryAllByText("×").length).toBe(1);
+});
+
 // HELPERS
 
 function pressEnter(input: HTMLElement) {
@@ -235,10 +280,8 @@ function fill(input: HTMLElement, value: string) {
   fireEvent.change(input, { target: { value } });
 }
 
-// TODO: nice animations on add and remove
 // TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count
-// TODO: BUG / I can add an empty string
 // TODO: auto focus
 // --- release ---
 // TODO: custom async suggestion function

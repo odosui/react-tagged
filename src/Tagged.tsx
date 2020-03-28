@@ -82,7 +82,12 @@ export const Tagged: React.FC<{
       onChange && onChange(nt);
     };
 
-    const handleAdd = (tag: string) => {
+    const handleAdd = (tagUntrimmed: string) => {
+      const tag = (tagUntrimmed || "").trim();
+      if (!tag) {
+        return;
+      }
+
       if (!allowCustom && suggestions.indexOf(tag) === -1) {
         return;
       }
