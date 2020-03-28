@@ -2,7 +2,7 @@ import * as React from "react";
 import { memo, useState, useEffect, useRef } from "react";
 import { suggest, highlited, without, moveCycled } from "./utils";
 
-export const INPUT_DEFAULT_PLACEHOLDER = "Add New Tag";
+export const INPUT_DEFAULT_PLACEHOLDER = "Add new tag";
 
 const SingleTag: React.FC<{ name: string; onDelete: () => void }> = memo(
   ({ name, onDelete }) => {
