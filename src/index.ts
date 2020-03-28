@@ -1,4 +1,4 @@
-import { Tagged } from "./Tagged";
-import "./style.scss";
+import { Tagged } from './Tagged'
+import './style.scss'
 
-export { Tagged };
+export { Tagged }
