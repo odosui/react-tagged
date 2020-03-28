@@ -2,7 +2,7 @@
   "name": "react-tagged",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.9.2",
+  "version": "0.9.5",
   "description": "A minimalistic React tags component",
   "repository": {
     "type": "git",
@@ -11,7 +11,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "build": "rollup --config",
+    "build": "rm -rf dist && rollup --config",
     "examples": "rollup --config rollup.config.examples.js --watch"
   },
   "peerDependencies": {
