@@ -4,6 +4,10 @@
   "types": "dist/index.d.ts",
   "version": "0.9.2",
   "description": "A minimalistic React tags component",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hiquest/react-tagged.git"
+  },
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",

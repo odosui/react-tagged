@@ -44,8 +44,8 @@ import 'react-tagged/dist/index.css' // styles
   suggestions={[]}                          // suggestions (array of strings)
   onChange={(tags) => {}}                   // called every a tag is added or removed, tags is an array of strings
   suggestionWrapPattern="<b><u>$1</u></b>"  // how to highlight search pattern in suggestions
-  allowCustom={true};                       // when false, it will only allow tags from suggestions
-  inputPlaceholder="Add new tag"            // input placeholder   
+  allowCustom={true}                        // when false, it will only allow tags from suggestions
+  inputPlaceholder="Add new tag"            // the input placeholder
   suggestionsThreshold={1}                  // how many characters typed before suggestions appear
 />
 ```
