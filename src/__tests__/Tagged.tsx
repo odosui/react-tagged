@@ -276,9 +276,7 @@ function fill(input: HTMLElement, value: string) {
   fireEvent.change(input, { target: { value } })
 }
 
-// TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count
-// --- release ---
 // TODO: custom async suggestion function
 // TODO: sort alphabetically on add
 // TODO: suggestion debounce?

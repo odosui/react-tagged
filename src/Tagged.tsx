@@ -1,50 +1,9 @@
 import * as React from 'react'
-import { memo, useState, useEffect, useRef } from 'react'
+import { memo, useState, useEffect } from 'react'
 import { suggest, highlited, without, moveCycled } from './utils'
+import Tag from './Tag'
 
 export const INPUT_DEFAULT_PLACEHOLDER = 'Add new tag'
-
-const SingleTag: React.FC<{ name: string; onDelete: () => void }> = memo(
-  ({ name, onDelete }) => {
-    const [classes, setClasses] = useState('react-tagged--tag-enter')
-    const [deleting, setDeleting] = useState(false)
-
-    useEffect(() => {
-      setClasses('react-tagged--tag-enter react-tagged--tag-enter-active')
-    }, [])
-
-    const elRef = useRef<HTMLDivElement>(null)
-
-    const handleDelete: React.MouseEventHandler = (e) => {
-      e.preventDefault()
-      setClasses('react-tagged--tag-leave')
-      setTimeout(() => {
-        setClasses('react-tagged--tag-leave react-tagged--tag-leave-active')
-        setDeleting(true)
-      }, 10)
-    }
-
-    const handleTransitionEnd: React.TransitionEventHandler = ({ target }) => {
-      if (target === elRef.current && deleting) {
-        setDeleting(false)
-        onDelete()
-      }
-    }
-
-    return (
-      <div
-        className={`react-tagged--tag ${classes}`}
-        onTransitionEnd={handleTransitionEnd}
-        ref={elRef}
-      >
-        {name}
-        <a href="#" onClick={handleDelete}>
-          ×
-        </a>
-      </div>
-    )
-  },
-)
 
 export const Tagged: React.FC<{
   initialTags: string[]
@@ -55,6 +14,7 @@ export const Tagged: React.FC<{
   inputPlaceholder?: string
   suggestionsThreshold?: number
   autoFocus?: boolean
+  reverse?: boolean
 }> = memo(
   ({
     initialTags,
@@ -65,6 +25,7 @@ export const Tagged: React.FC<{
     inputPlaceholder = INPUT_DEFAULT_PLACEHOLDER,
     suggestionsThreshold = 1,
     autoFocus = false,
+    reverse = false,
   }) => {
     const [tags, setTags] = useState([] as string[])
     const [typed, setTyped] = useState('')
@@ -100,6 +61,7 @@ export const Tagged: React.FC<{
       const nt = [...tags, tag]
       setTags(nt)
       setTyped('')
+      setCursor(-1)
       onChange && onChange(nt)
     }
 
@@ -139,45 +101,60 @@ export const Tagged: React.FC<{
       }
     }
 
+    const tagsEl = tags.map((t, ind) => (
+      <Tag name={t} key={t} onDelete={() => handleDelete(ind)} />
+    ))
+
+    const inputEl = (
+      <div
+        className={`react-tagged--tags-input-wrapper ${
+          sug.length > 0 ? 'with-suggestions' : ''
+        }`}
+      >
+        <input
+          value={typed}
+          type="text"
+          placeholder={inputPlaceholder}
+          onChange={({ target: { value } }) => {
+            setTyped(value)
+          }}
+          onKeyPress={handleKeyPress}
+          onKeyDown={handleKeyDown}
+          className="react-tagged--input"
+          autoFocus={autoFocus}
+        />
+        {sug.length > 0 && (
+          <div className="react-tagged--tags-suggestions">
+            {sug.map((s, ind) => (
+              <div
+                className={`react-tagged--tags-suggestions-item ${
+                  cursor === ind ? 'selected' : ''
+                }`}
+                key={s}
+                dangerouslySetInnerHTML={{
+                  __html: highlited(s, typed, suggestionWrapPattern),
+                }}
+                onClick={() => handleAdd(s)}
+              />
+            ))}
+          </div>
+        )}
+      </div>
+    )
+
+    if (reverse) {
+      return (
+        <div className="react-tagged--tags react-tagged--reveresed">
+          {tagsEl}
+          {inputEl}
+        </div>
+      )
+    }
+
     return (
       <div className="react-tagged--tags">
-        {tags.map((t, ind) => (
-          <SingleTag name={t} key={t} onDelete={() => handleDelete(ind)} />
-        ))}
-        <div
-          className={`react-tagged--tags-input-wrapper ${
-            sug.length > 0 ? 'with-suggestions' : ''
-          }`}
-        >
-          <input
-            value={typed}
-            type="text"
-            placeholder={inputPlaceholder}
-            onChange={({ target: { value } }) => {
-              setTyped(value)
-            }}
-            onKeyPress={handleKeyPress}
-            onKeyDown={handleKeyDown}
-            className="react-tagged--input"
-            autoFocus={autoFocus}
-          />
-          {sug.length > 0 && (
-            <div className="react-tagged--tags-suggestions">
-              {sug.map((s, ind) => (
-                <div
-                  className={`react-tagged--tags-suggestions-item ${
-                    cursor === ind ? 'selected' : ''
-                  }`}
-                  key={s}
-                  dangerouslySetInnerHTML={{
-                    __html: highlited(s, typed, suggestionWrapPattern),
-                  }}
-                  onClick={() => handleAdd(s)}
-                />
-              ))}
-            </div>
-          )}
-        </div>
+        {inputEl}
+        {tagsEl}
       </div>
     )
   },

@@ -12,6 +12,8 @@ A minimalistic React tags component
   <img alt="" src="https://img.shields.io/twitter/follow/janis_t.svg?style=social&label=Follow" />
 </a>
 
+![Tagged in action](preview.gif)
+
 # Features
 
 🔋 TypeScript declarations included
@@ -20,9 +22,9 @@ A minimalistic React tags component
 
 😍 Fully-customizable look
 
-🎞 Customizable animations via CSS transitions
+🎞 Customizable nimations via CSS transitions
 
-⌨ Keyboard shortcuts are supported (using arrows to pick suggestions, etc.)
+⌨ Keyboard shortcuts (using arrows to pick suggestions, etc.)
 
 # Installation
 
@@ -48,6 +50,7 @@ import 'react-tagged/dist/index.css' // styles
   inputPlaceholder="Add new tag"            // the input placeholder
   suggestionsThreshold={1}                  // how many characters typed before suggestions appear
   autoFocus={false}                         // put focus into the input field
+  reverse={false}                           // what should go first: tags or the input
 />
 ```
 

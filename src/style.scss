@@ -1,16 +1,23 @@
 $tag-bg: #c70039;
-$font-size: 12px;
+$font-size: 14px;
 $border-radius: 5px;
 $tag-max-width: 200px;
+$tag-height: 26px;
 
 .react-tagged--tags {
   display: flex;
   position: relative;
   flex-wrap: wrap;
+  &.react-tagged--reveresed {
+    .react-tagged--tags-input-wrapper {
+      margin-right: 0;
+    }
+  }
 }
+
 .react-tagged--tag {
   margin-right: 10px;
-  border-radius: 5px;
+  border-radius: $border-radius;
   padding: 0 5px;
   background: $tag-bg;
   color: white;
@@ -19,13 +26,16 @@ $tag-max-width: 200px;
   display: flex;
   vertical-align: middle;
   align-items: center;
+  height: $tag-height;
+  overflow: hidden;
+  white-space: nowrap;
   a {
     color: white;
     margin-left: 3px;
   }
 }
 input[type='text'].react-tagged--input {
-  height: 26px;
+  height: 100%;
   margin-bottom: 0;
   padding: 3px 10px;
   width: 100%;
@@ -36,8 +46,10 @@ input[type='text'].react-tagged--input {
   border-radius: $border-radius;
   position: relative;
   width: 110px;
+  height: $tag-height;
   transition: box-shadow 0.2s ease-in;
   border: 1px dashed #aaa;
+  margin-right: 10px;
   &.with-suggestions {
     box-shadow: 0 3px 5px rgba(71, 80, 89, 0.15);
     border-bottom-left-radius: 0;

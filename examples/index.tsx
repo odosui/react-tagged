@@ -87,17 +87,19 @@ const App: React.FC = () => {
       </div>
       <hr />
       <div>
-        <h3>Forbid custom tags</h3>
+        <h3>Forbid custom tags + reverse</h3>
         <Tagged
           initialTags={['Denmark']}
           suggestions={countries}
           allowCustom={false}
+          reverse
         />
         <Code>
           {`<Tagged
   initialTags={["Denmark"]}
   suggestions={countries}
   allowCustom={false}
+  reverse
 />`}
         </Code>
       </div>
