@@ -15,9 +15,13 @@ A minimalistic React tags component
 # Features
 
 🔋 TypeScript declarations included
+
 💾 Minimalistic (**1.0KB**) with zero dependencies
+
 😍 Fully-customizable look
+
 🎞 Customizable animations via CSS transitions
+
 ⌨ Keyboard shortcuts are supported (using arrows to pick suggestions, etc.)
 
 # Installation
