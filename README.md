@@ -14,14 +14,11 @@ A minimalistic React tags component
 
 # Features
 
-- 🔋 TypeScript declarations included
-- <a href="https://bundlephobia.com/result?p=react-tagged@latest" target="\_parent">
-    <img alt="" src="https://badgen.net/bundlephobia/minzip/react-tagged@latest" />
-  </a>
-- Zero dependencies
-- Fully-customizable look
-- Customizable animations via CSS transitions
-- Keyboard shortcuts are supported (using arrows to pick suggestions, etc.)
+🔋 TypeScript declarations included
+💾 Minimalistic (**1.0KB**) with zero dependencies
+😍 Fully-customizable look
+🎞 Customizable animations via CSS transitions
+⌨ Keyboard shortcuts are supported (using arrows to pick suggestions, etc.)
 
 # Installation
 
@@ -51,6 +48,16 @@ import 'react-tagged/dist/index.css' // styles
 ```
 
 # F.A.Q.
+
+## How to customize how it looks?
+
+In order to change the looks, you can simply override the CSS classes. For example, to change the background of a tag:
+
+```css
+.react-tagged--tag {
+  background-color: orange;
+}
+```
 
 ## How to override the default animation?
 
