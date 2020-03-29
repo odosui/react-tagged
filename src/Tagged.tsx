@@ -54,6 +54,7 @@ export const Tagged: React.FC<{
   allowCustom?: boolean
   inputPlaceholder?: string
   suggestionsThreshold?: number
+  autoFocus?: boolean
 }> = memo(
   ({
     initialTags,
@@ -63,6 +64,7 @@ export const Tagged: React.FC<{
     allowCustom = true,
     inputPlaceholder = INPUT_DEFAULT_PLACEHOLDER,
     suggestionsThreshold = 1,
+    autoFocus = false,
   }) => {
     const [tags, setTags] = useState([] as string[])
     const [typed, setTyped] = useState('')
@@ -157,6 +159,7 @@ export const Tagged: React.FC<{
             onKeyPress={handleKeyPress}
             onKeyDown={handleKeyDown}
             className="react-tagged--input"
+            autoFocus={autoFocus}
           />
           {sug.length > 0 && (
             <div className="react-tagged--tags-suggestions">

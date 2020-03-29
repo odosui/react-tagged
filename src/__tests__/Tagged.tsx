@@ -278,9 +278,10 @@ function fill(input: HTMLElement, value: string) {
 
 // TODO: orientation: left / right (input -> tags, tags -> input)
 // TODO: suggestions count
-// TODO: auto focus
 // --- release ---
 // TODO: custom async suggestion function
 // TODO: sort alphabetically on add
 // TODO: suggestion debounce?
 // TODO: suggest on click into
+// TODO: customize suggestion items (include images, etc)
+// TODO: limit total tags one can add

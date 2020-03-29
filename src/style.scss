@@ -1,6 +1,7 @@
 $tag-bg: #c70039;
 $font-size: 12px;
 $border-radius: 5px;
+$tag-max-width: 200px;
 
 .react-tagged--tags {
   display: flex;
@@ -23,7 +24,7 @@ $border-radius: 5px;
     margin-left: 3px;
   }
 }
-input[type="text"].react-tagged--input {
+input[type='text'].react-tagged--input {
   height: 26px;
   margin-bottom: 0;
   padding: 3px 10px;
@@ -72,13 +73,13 @@ input[type="text"].react-tagged--input {
   transition: max-width 0.2s ease-out;
   max-width: 0;
   &.react-tagged--tag-enter-active {
-    max-width: 100px;
+    max-width: $tag-max-width;
   }
 }
 
 .react-tagged--tag-leave {
   transition: max-width 0.2s ease-out;
-  max-width: 100px;
+  max-width: $tag-max-width;
   &.react-tagged--tag-leave-active {
     max-width: 0;
   }

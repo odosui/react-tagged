@@ -14,15 +14,14 @@ A minimalistic React tags component
 
 # Features
 
-- 🔥 Minimalistic <a href="https://bundlephobia.com/result?p=react-tagged@latest" target="\_parent">
-  <img alt="" src="https://badgen.net/bundlephobia/minzip/react-tagged@latest" />
-  </a>
-- Animations
-- Fully-customizable look
 - 🔋 TypeScript declarations included
-- Keyboard shortcuts are supported (using arrows to pick suggestions, etc.)
-- ES6 modules
+- <a href="https://bundlephobia.com/result?p=react-tagged@latest" target="\_parent">
+    <img alt="" src="https://badgen.net/bundlephobia/minzip/react-tagged@latest" />
+  </a>
 - Zero dependencies
+- Fully-customizable look
+- Customizable animations via CSS transitions
+- Keyboard shortcuts are supported (using arrows to pick suggestions, etc.)
 
 # Installation
 
@@ -47,6 +46,7 @@ import 'react-tagged/dist/index.css' // styles
   allowCustom={true}                        // when false, it will only allow tags from suggestions
   inputPlaceholder="Add new tag"            // the input placeholder
   suggestionsThreshold={1}                  // how many characters typed before suggestions appear
+  autoFocus={false}                         // put focus into the input field
 />
 ```
 

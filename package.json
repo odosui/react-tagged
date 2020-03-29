@@ -2,7 +2,7 @@
   "name": "react-tagged",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "description": "A minimalistic React tags component",
   "repository": {
     "type": "git",
