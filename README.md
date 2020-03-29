@@ -12,7 +12,7 @@ A minimalistic React tags component
   <img alt="" src="https://img.shields.io/twitter/follow/janis_t.svg?style=social&label=Follow" />
 </a>
 
-![Tagged in action](preview.gif)
+![Tagged in action](preview.gif | width=500)
 
 # Features
 
