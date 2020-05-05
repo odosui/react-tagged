@@ -16,15 +16,13 @@ A minimalistic React tags component
 
 # Features
 
+💾 **1.2KB** GZipped
+
 🔋 TypeScript declarations included
 
-💾 Minimalistic (**1.0KB**) with zero dependencies
-
-😍 Fully-customizable look
-
-🎞 Customizable nimations via CSS transitions
-
 ⌨ Keyboard shortcuts (using arrows to pick suggestions, etc.)
+
+😍 Fully-customizable look (including animations) via CSS
 
 # Installation
 
@@ -58,7 +56,7 @@ import 'react-tagged/dist/index.css' // styles
 
 ## How to customize how it looks?
 
-In order to change the looks, you can simply override the CSS classes. For example, to change the background of a tag:
+Simply override the CSS classes. Changing the tag background, for instance, is as easy as
 
 ```css
 .react-tagged--tag {
@@ -66,9 +64,9 @@ In order to change the looks, you can simply override the CSS classes. For examp
 }
 ```
 
-## How to override the default animation?
+## How to override the default animations?
 
-The default transition is applied to the width of a tag. There are four CSS classes that handle CSS transitions on tag appear and on tag leave. Override those to change it.
+The default transition is applied to the `max-width` of a tag. There are four CSS classes that handle CSS transitions on tag appear and on tag leave. Override those to change it.
 
 ```css
 .react-tagged--tag-enter {
