@@ -29,9 +29,14 @@ $tag-height: 26px;
   height: $tag-height;
   overflow: hidden;
   white-space: nowrap;
-  a {
+  button {
     color: white;
-    margin-left: 3px;
+    background-color: transparent;
+    border: 0;
+    display: inline;
+    width: auto;
+    padding: 0;
+    margin: 0 0 0 3px;
   }
 }
 input[type='text'].react-tagged--input {

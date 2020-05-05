@@ -35,9 +35,9 @@ const Tag: React.FC<{ name: string; onDelete: () => void }> = memo(
         ref={elRef}
       >
         {name}
-        <a href="#" onClick={handleDelete}>
+        <button onClick={handleDelete} aria-label="Delete">
           ×
-        </a>
+        </button>
       </div>
     )
   },
