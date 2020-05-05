@@ -276,10 +276,9 @@ function fill(input: HTMLElement, value: string) {
   fireEvent.change(input, { target: { value } })
 }
 
-// TODO: suggestions count
 // TODO: custom async suggestion function
-// TODO: sort alphabetically on add
 // TODO: suggestion debounce?
 // TODO: suggest on click into
 // TODO: customize suggestion items (include images, etc)
 // TODO: limit total tags one can add
+// TODO: suggestionWrapPattern is a security vulnerability I would change that prop to be of type (suggestion: string) => ReactNode

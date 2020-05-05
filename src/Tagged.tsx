@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { memo, useState, useEffect } from 'react'
-import { suggest, highlited, without, moveCycled } from './utils'
+import { memo, useEffect, useState } from 'react'
 import Tag from './Tag'
+import { highlited, moveCycled, suggest, without } from './utils'
 
 export const INPUT_DEFAULT_PLACEHOLDER = 'Add new tag'
 
-export const Tagged: React.FC<{
+interface TaggedProps {
   initialTags: string[]
   suggestions?: string[]
   onChange?: (tags: string[]) => void
@@ -15,7 +15,9 @@ export const Tagged: React.FC<{
   suggestionsThreshold?: number
   autoFocus?: boolean
   reverse?: boolean
-}> = memo(
+}
+
+export const Tagged: React.FC<TaggedProps> = memo(
   ({
     initialTags,
     suggestions = [],
@@ -65,7 +67,7 @@ export const Tagged: React.FC<{
       onChange && onChange(nt)
     }
 
-    const sug = filterSuggestions(
+    const visibleSuggestions = filterSuggestions(
       typed,
       suggestionsThreshold,
       tags,
@@ -75,7 +77,7 @@ export const Tagged: React.FC<{
     const handleKeyPress = ({ key }: React.KeyboardEvent) => {
       if (key === 'Enter' && typed) {
         if (cursor > -1) {
-          handleAdd(sug[cursor])
+          handleAdd(visibleSuggestions[cursor])
         } else {
           handleAdd(typed)
         }
@@ -83,7 +85,7 @@ export const Tagged: React.FC<{
     }
 
     const moveCursor = (diff: 1 | -1) => {
-      setCursor(moveCycled(cursor, diff, sug.length))
+      setCursor(moveCycled(cursor, diff, visibleSuggestions.length))
     }
 
     const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -108,7 +110,7 @@ export const Tagged: React.FC<{
     const inputEl = (
       <div
         className={`react-tagged--tags-input-wrapper ${
-          sug.length > 0 ? 'with-suggestions' : ''
+          visibleSuggestions.length > 0 ? 'with-suggestions' : ''
         }`}
       >
         <input
@@ -123,9 +125,9 @@ export const Tagged: React.FC<{
           className="react-tagged--input"
           autoFocus={autoFocus}
         />
-        {sug.length > 0 && (
+        {visibleSuggestions.length > 0 && (
           <div className="react-tagged--tags-suggestions">
-            {sug.map((s, ind) => (
+            {visibleSuggestions.map((s, ind) => (
               <div
                 className={`react-tagged--tags-suggestions-item ${
                   cursor === ind ? 'selected' : ''
