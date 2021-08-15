@@ -1,5 +1,5 @@
 import ts from "@wessberg/rollup-plugin-ts";
-import postcss from "rollup-plugin-postcss";
+import scss from 'rollup-plugin-scss'
 import serve from "rollup-plugin-serve";
 import livereload from "rollup-plugin-livereload";
 
@@ -12,8 +12,8 @@ export default {
   },
   plugins: [
     ts(),
-    postcss({
-      extract: true
+    scss({
+      output: 'examples/index.css'
     }),
     serve("examples"),
     livereload({

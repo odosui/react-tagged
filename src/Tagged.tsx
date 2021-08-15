@@ -42,7 +42,10 @@ export const Tagged: React.FC<TaggedProps> = memo(
     }, [typed])
 
     const handleDelete = (ind: number) => {
-      const nt = without(tags, tags[ind])
+      if (!tags[ind]) {
+        return
+      }
+      const nt = without(tags, tags[ind]!)
       setTags(nt)
       onChange && onChange(nt)
     }
@@ -77,7 +80,11 @@ export const Tagged: React.FC<TaggedProps> = memo(
     const handleKeyPress = ({ key }: React.KeyboardEvent) => {
       if (key === 'Enter' && typed) {
         if (cursor > -1) {
-          handleAdd(visibleSuggestions[cursor])
+          const addEl = visibleSuggestions[cursor]
+          if (!addEl) {
+            return
+          }
+          handleAdd(addEl)
         } else {
           handleAdd(typed)
         }

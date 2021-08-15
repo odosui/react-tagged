@@ -1,6 +1,6 @@
 import ts from "@wessberg/rollup-plugin-ts";
 import { terser } from "rollup-plugin-terser";
-import postcss from "rollup-plugin-postcss";
+import scss from 'rollup-plugin-scss'
 
 export default {
   input: "src/index.ts",
@@ -12,10 +12,10 @@ export default {
   external: ["react"],
   plugins: [
     ts(),
-    postcss({
-      extract: true,
-      minimize: true
-    }),
-    terser()
+    terser(),
+    scss({
+      output: 'dist/index.css',
+      outputStyle: 'compressed'
+    })
   ]
 };

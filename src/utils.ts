@@ -11,7 +11,7 @@ export function highlited(
   return text.replace(new RegExp(`(${typed})`, 'gi'), wrap)
 }
 
-export function without<T>(arr: T[], el: T) {
+export function without<T>(arr: T[], el: T): T[] {
   return arr.filter((e) => e !== el)
 }
 
