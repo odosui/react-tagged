@@ -2,7 +2,7 @@
   "name": "react-tagged",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "version": "0.9.9",
+  "version": "1.0.1",
   "description": "A minimalistic React tags component",
   "repository": {
     "type": "git",
@@ -15,7 +15,7 @@
     "examples": "rollup --config rollup.config.examples.js --watch"
   },
   "peerDependencies": {
-    "react": "^16.6.3"
+    "react": ">= 16.8"
   },
   "keywords": [
     "react",
