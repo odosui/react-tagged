@@ -1,6 +1,6 @@
-# react-tagged
+# react-tagged 🏷️
 
-A minimalistic React tags component
+A minimalistic React tags component with TypeScript.
 
 <a href="https://bundlephobia.com/result?p=react-tagged@latest" target="\_parent">
   <img alt="" src="https://badgen.net/bundlephobia/minzip/react-tagged@latest" />
@@ -16,7 +16,7 @@ A minimalistic React tags component
 
 # Features
 
-💾 **1.2KB** GZipped
+💾 **1.3KB** GZipped
 
 🔋 TypeScript declarations included
 
@@ -56,7 +56,7 @@ import 'react-tagged/dist/index.css' // styles
 
 ## How to customize how it looks?
 
-Simply override the CSS classes. Changing the tag background, for instance, is as easy as
+You can override the CSS classes. Changing the tag background, for instance, looks like this:
 
 ```css
 .react-tagged--tag {
@@ -66,7 +66,7 @@ Simply override the CSS classes. Changing the tag background, for instance, is a
 
 ## How to override the default animations?
 
-The default transition is applied to the `max-width` of a tag. There are four CSS classes that handle CSS transitions on tag appear and on tag leave. Override those to change it.
+The default transition is applied to the `max-width` of a tag. There are four CSS classes that handle CSS transitions on tag appear and on tag leave. Override them to change it.
 
 ```css
 .react-tagged--tag-enter {
