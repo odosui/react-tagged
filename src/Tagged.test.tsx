@@ -275,9 +275,9 @@ async function pressEnter(input: HTMLElement) {
   await userEvent.type(input, '{enter}')
 }
 
-async function pressEscape(input: HTMLElement) {
-  await userEvent.type(input, '{esc}')
-}
+// async function pressEscape(input: HTMLElement) {
+//   await userEvent.type(input, '{esc}')
+// }
 
 function pressDown(input: HTMLElement) {
   fireEvent.keyDown(input, { code: 40, charCode: 40, keyCode: 40 })

@@ -1,12 +1,16 @@
 import * as React from 'react'
-import * as ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import './examples.scss'
 
 import { Tagged } from '../src/index'
 
 window.onload = () => {
-  const el = document.querySelector('#app')
-  ReactDOM.render(<App />, el)
+  const el = document.getElementById('app')
+  if (!el) {
+    throw new Error('Root element not found')
+  }
+  // React 18+
+  createRoot(el).render(<App />)
 }
 
 const countries = ['Denmark', 'Sweden', 'Finland', 'Poland', 'Italy', 'Latvia']
@@ -139,7 +143,9 @@ const App: React.FC = () => {
   )
 }
 
-function Code({ children }: { children: React.ReactChildren | string }) {
+const Code: React.FC<{
+  children: string
+}> = ({ children }) => {
   return (
     <pre className="code">
       <code className="language-jsx">{children}</code>

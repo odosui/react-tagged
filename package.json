@@ -9,10 +9,11 @@
     "url": "https://github.com/odostech/react-tagged.git"
   },
   "scripts": {
-    "test": "vitest",
+    "test": "vitest --run",
     "test:watch": "jest --watch",
     "build": "rm -rf dist && rollup --config",
-    "examples": "rollup --config rollup.config.examples.js --watch"
+    "examples": "rollup --config rollup.config.examples.js --watch",
+    "types": "tsc --project tsconfig.json --noEmit"
   },
   "peerDependencies": {
     "react": ">= 16.8"
@@ -21,7 +22,7 @@
     "react",
     "tags"
   ],
-  "author": "Odostech",
+  "author": "weareodos",
   "license": "MIT",
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
