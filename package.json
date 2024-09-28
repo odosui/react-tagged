@@ -19,8 +19,9 @@
     "test": "vitest --run",
     "test:watch": "jest --watch",
     "build": "rm -rf dist && vite build",
-    "examples": "rollup --config rollup.config.examples.js --watch",
-    "types": "tsc --project tsconfig.json --noEmit"
+    "types": "tsc --project tsconfig.json --noEmit",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
     "react": ">= 16.8"
@@ -32,6 +33,15 @@
   "author": "weareodos",
   "license": "MIT",
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.9.0",
+    "@storybook/addon-essentials": "^8.3.4",
+    "@storybook/addon-interactions": "^8.3.4",
+    "@storybook/addon-links": "^8.3.4",
+    "@storybook/addon-onboarding": "^8.3.4",
+    "@storybook/blocks": "^8.3.4",
+    "@storybook/react": "^8.3.4",
+    "@storybook/react-vite": "^8.3.4",
+    "@storybook/test": "^8.3.4",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.5.0",
     "@testing-library/react": "^16.0.1",
@@ -43,6 +53,7 @@
     "react": ">= 16.8",
     "react-dom": ">= 16.8",
     "sass": "^1.37.5",
+    "storybook": "^8.3.4",
     "typescript": "^5.6.2",
     "vite": "^5.4.8",
     "vitest": "^2.1.1"
