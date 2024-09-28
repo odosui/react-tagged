@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { createRoot } from 'react-dom/client'
-import './examples.scss'
-
 import { Tagged } from '../src/index'
+import './examples.scss'
 
 window.onload = () => {
   const el = document.getElementById('app')
