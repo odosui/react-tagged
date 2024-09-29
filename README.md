@@ -21,6 +21,10 @@ A minimalistic React tags component with TypeScript.
 
 😍 Fully-customizable look (including animations) via CSS
 
+# Demo
+
+Multiple examples are available [in our storybook](https://www.odosui.com/react-tagged).
+
 # Installation
 
 ```bash
