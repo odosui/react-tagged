@@ -17,7 +17,7 @@
   "description": "A robust tags input for React with TypeScript.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/odostech/react-tagged.git"
+    "url": "https://github.com/odosui/react-tagged.git"
   },
   "scripts": {
     "test": "vitest --run",
