@@ -1,13 +1,15 @@
-$tag-bg: #c70039;
+$tag-bg: #ff5c5f;
 $font-size: 14px;
-$border-radius: 5px;
-$tag-max-width: 200px;
-$tag-height: 26px;
+$border-radius: 4px;
+$tag-max-width: 256px;
+$tag-height: 32px;
 
 .react-tagged--tags {
+  font-family: Arial, Helvetica, sans-serif;
   display: flex;
   position: relative;
   flex-wrap: wrap;
+  box-sizing: border-box;
   &.react-tagged--reveresed {
     .react-tagged--tags-input-wrapper {
       margin-right: 0;
@@ -16,12 +18,12 @@ $tag-height: 26px;
 }
 
 .react-tagged--tag {
-  margin-right: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-right: 12px;
   border-radius: $border-radius;
-  padding: 0 5px;
+  padding: 0 12px;
   background: $tag-bg;
   color: white;
-  font-weight: bold;
   font-size: $font-size;
   display: flex;
   vertical-align: middle;
@@ -29,6 +31,8 @@ $tag-height: 26px;
   height: $tag-height;
   overflow: hidden;
   white-space: nowrap;
+
+  // close button
   button {
     color: white;
     background-color: transparent;
@@ -36,25 +40,30 @@ $tag-height: 26px;
     display: inline;
     width: auto;
     padding: 0;
-    margin: 0 0 0 3px;
+    margin: 0 0 0 8px;
+    cursor: pointer;
   }
 }
+
 input[type='text'].react-tagged--input {
   height: 100%;
-  margin-bottom: 0;
-  padding: 3px 10px;
   width: 100%;
+  margin-bottom: 0;
+  padding: 4px 12px;
   font-size: $font-size;
   border: 0;
+  outline: 0;
+  box-sizing: border-box;
 }
+
 .react-tagged--tags-input-wrapper {
   border-radius: $border-radius;
   position: relative;
-  width: 110px;
+  width: 128px;
   height: $tag-height;
   transition: box-shadow 0.2s ease-in;
   border: 1px dashed #aaa;
-  margin-right: 10px;
+  margin-right: 12px;
   &.with-suggestions {
     box-shadow: 0 3px 5px rgba(71, 80, 89, 0.15);
     border-bottom-left-radius: 0;
@@ -62,9 +71,10 @@ input[type='text'].react-tagged--input {
     border: 1px solid #aaa;
   }
 }
+
 .react-tagged--tags-suggestions {
   position: absolute;
-  width: calc(100% + 2px);
+  width: 100%;
   left: -1px;
   background: white;
   z-index: 100;
@@ -76,8 +86,9 @@ input[type='text'].react-tagged--input {
   border: 1px solid #aaa;
   border-top: 0;
 }
+
 .react-tagged--tags-suggestions-item {
-  padding: 5px 10px;
+  padding: 8px 12px;
   font-size: $font-size;
   cursor: pointer;
   &:hover,

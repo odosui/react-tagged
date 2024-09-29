@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
-import { Tagged } from '../Tagged'
+import { Tagged } from '../'
 import { countries, states } from './helpers'
 
 const meta = {
@@ -35,7 +35,6 @@ export const CustomTagNotAllowed: Story = {
     initialTags: ['Denmark'],
     suggestions: countries,
     allowCustom: false,
-    reverse: true,
   },
 }
 
@@ -52,5 +51,14 @@ export const SuggestionTreshold: Story = {
     initialTags: ['Denmark'],
     suggestions: countries,
     suggestionsThreshold: 2,
+  },
+}
+
+export const ReverseOrder: Story = {
+  name: 'Tags go first, input last',
+  args: {
+    initialTags: ['Denmark'],
+    suggestions: countries,
+    reverse: true,
   },
 }
