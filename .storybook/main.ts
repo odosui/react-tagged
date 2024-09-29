@@ -1,4 +1,5 @@
 import type { StorybookConfig } from '@storybook/react-vite'
+import { InlineConfig } from 'vite'
 
 const config: StorybookConfig = {
   stories: [
@@ -15,6 +16,17 @@ const config: StorybookConfig = {
   framework: {
     name: '@storybook/react-vite',
     options: {},
+  },
+  async viteFinal(config, { configType }) {
+    const { mergeConfig } = await import('vite')
+
+    const c: InlineConfig = {}
+
+    if (configType === 'PRODUCTION') {
+      c.base = '/react-tagged/'
+    }
+
+    return mergeConfig(config, c)
   },
 }
 export default config
