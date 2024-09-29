@@ -40,7 +40,7 @@ import { Tagged } from 'react-tagged'
 import 'react-tagged/dist/index.css' // styles
 
 <Tagged
-  initialTags={[]}                          // initial tags (array of strings)
+  initialTags={[]}                          // selected tags (array of strings)
   suggestions={[]}                          // suggestions (array of strings)
   onChange={(tags) => {}}                   // called every a tag is added or removed, tags is an array of strings
   suggestionWrapPattern="<b><u>$1</u></b>"  // how to highlight search pattern in suggestions
