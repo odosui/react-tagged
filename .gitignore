@@ -1,4 +1,6 @@
 dist
 node_modules
 
-*storybook.logstorybook-static
+*storybook.log
+storybook-static
+react-tagged
