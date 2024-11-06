@@ -1,8 +1,24 @@
-$tag-bg: #ff5c5f;
+$unit0: 4px;
+$unit1: 8px;
+$unit2: 12px;
+$unit3: 16px;
+$unit4: 24px;
+$unit5: 32px;
+$unit6: 48px;
+$unit7: 64px;
+$unit8: 96px;
+$unit9: 128px;
+$unit10: 192px;
+$unit11: 256px;
+$unit12: 384px;
+$unit13: 512px;
+$unit14: 640px;
+$unit15: 768px;
+$unit16: 960px;
+
+$tag-bg: #9c27b0;
 $font-size: 14px;
-$border-radius: 4px;
-$tag-max-width: 256px;
-$tag-height: 32px;
+$border-color: #cecece;
 
 .react-tagged--tags {
   font-family: Arial, Helvetica, sans-serif;
@@ -19,16 +35,16 @@ $tag-height: 32px;
 
 .react-tagged--tag {
   font-family: Arial, Helvetica, sans-serif;
-  margin-right: 12px;
-  border-radius: $border-radius;
-  padding: 0 12px;
+  margin-right: $unit2;
+  border-radius: $unit0;
+  padding: 0 $unit2;
   background: $tag-bg;
   color: white;
   font-size: $font-size;
   display: flex;
   vertical-align: middle;
   align-items: center;
-  height: $tag-height;
+  height: $unit5;
   overflow: hidden;
   white-space: nowrap;
 
@@ -40,7 +56,7 @@ $tag-height: 32px;
     display: inline;
     width: auto;
     padding: 0;
-    margin: 0 0 0 8px;
+    margin: 0 0 0 $unit1;
     cursor: pointer;
   }
 }
@@ -49,7 +65,7 @@ input[type='text'].react-tagged--input {
   height: 100%;
   width: 100%;
   margin-bottom: 0;
-  padding: 4px 12px;
+  padding: $unit0 $unit2;
   font-size: $font-size;
   border: 0;
   outline: 0;
@@ -57,13 +73,36 @@ input[type='text'].react-tagged--input {
 }
 
 .react-tagged--tags-input-wrapper {
-  border-radius: $border-radius;
+  border-radius: $unit0;
   position: relative;
-  width: 128px;
-  height: $tag-height;
+  width: $unit10;
+  height: $unit5;
   transition: box-shadow 0.2s ease-in;
-  border: 1px dashed #aaa;
-  margin-right: 12px;
+  border: 1px solid $border-color;
+  margin-right: $unit2;
+
+  form {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    overflow: hidden;
+    border-radius: $unit0;
+
+    button {
+      background-color: $tag-bg;
+      color: white;
+      border: 0;
+      padding: 0 $unit2;
+      cursor: pointer;
+      height: 100%;
+      &:disabled {
+        background-color: #f1f1f1;
+        cursor: not-allowed;
+        color: #ccc;
+      }
+    }
+  }
+
   &.with-suggestions {
     box-shadow: 0 3px 5px rgba(71, 80, 89, 0.15);
     border-bottom-left-radius: 0;
@@ -81,14 +120,14 @@ input[type='text'].react-tagged--input {
   border-top: 0;
   overflow-x: hidden;
   box-shadow: 0 3px 5px rgba(71, 80, 89, 0.15);
-  border-bottom-left-radius: $border-radius;
-  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $unit0;
+  border-bottom-right-radius: $unit0;
   border: 1px solid #aaa;
   border-top: 0;
 }
 
 .react-tagged--tags-suggestions-item {
-  padding: 8px 12px;
+  padding: $unit1 $unit2;
   font-size: $font-size;
   cursor: pointer;
   &:hover,
@@ -101,13 +140,13 @@ input[type='text'].react-tagged--input {
   transition: max-width 0.2s ease-out;
   max-width: 0;
   &.react-tagged--tag-enter-active {
-    max-width: $tag-max-width;
+    max-width: $unit11;
   }
 }
 
 .react-tagged--tag-leave {
   transition: max-width 0.2s ease-out;
-  max-width: $tag-max-width;
+  max-width: $unit11;
   &.react-tagged--tag-leave-active {
     max-width: 0;
   }

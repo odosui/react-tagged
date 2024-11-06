@@ -77,17 +77,36 @@ export const Tagged: React.FC<TaggedProps> = memo(
       suggestions,
     )
 
-    const handleKeyPress = ({ key }: React.KeyboardEvent) => {
-      if (key === 'Enter' && typed) {
-        if (cursor > -1) {
-          const addEl = visibleSuggestions[cursor]
-          if (!addEl) {
-            return
-          }
-          handleAdd(addEl)
-        } else {
-          handleAdd(typed)
+    // const handleKeyPress = ({ key }: React.KeyboardEvent) => {
+    //   if (key === 'Enter' && typed) {
+    //     if (cursor > -1) {
+    //       const addEl = visibleSuggestions[cursor]
+    //       if (!addEl) {
+    //         return
+    //       }
+    //       handleAdd(addEl)
+    //     } else {
+    //       handleAdd(typed)
+    //     }
+
+    //   }
+    // }
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+
+      if (!typed) {
+        return
+      }
+
+      if (cursor > -1) {
+        const addEl = visibleSuggestions[cursor]
+        if (!addEl) {
+          return
         }
+        handleAdd(addEl)
+      } else {
+        handleAdd(typed)
       }
     }
 
@@ -120,20 +139,38 @@ export const Tagged: React.FC<TaggedProps> = memo(
           visibleSuggestions.length > 0 ? 'with-suggestions' : ''
         }`}
       >
-        <input
-          value={typed}
-          type="text"
-          placeholder={inputPlaceholder}
-          onChange={({ target: { value } }) => {
-            setTyped(value)
-          }}
-          onKeyPress={handleKeyPress}
-          onKeyDown={handleKeyDown}
-          className="react-tagged--input"
-          autoFocus={autoFocus}
-        />
+        <form aria-label="Add new tag" onSubmit={handleSubmit}>
+          <input
+            value={typed}
+            type="text"
+            placeholder={inputPlaceholder}
+            onChange={({ target: { value } }) => {
+              setTyped(value)
+            }}
+            onKeyDown={handleKeyDown}
+            className="react-tagged--input"
+            autoFocus={autoFocus}
+            aria-label="Add new tag"
+            aria-autocomplete="list"
+            aria-haspopup="true"
+            aria-expanded={visibleSuggestions.length > 0}
+          />
+          <button
+            type="submit"
+            className="react-tagged--add-button"
+            disabled={!typed}
+            aria-label="Add tag"
+          >
+            Add
+          </button>
+        </form>
         {visibleSuggestions.length > 0 && (
-          <div className="react-tagged--tags-suggestions">
+          <div
+            className="react-tagged--tags-suggestions"
+            aria-live="polite"
+            role="listbox"
+            aria-label="Suggestions"
+          >
             {visibleSuggestions.map((s, ind) => (
               <div
                 className={`react-tagged--tags-suggestions-item ${
@@ -144,6 +181,8 @@ export const Tagged: React.FC<TaggedProps> = memo(
                   __html: highlited(s, typed, suggestionWrapPattern),
                 }}
                 onClick={() => handleAdd(s)}
+                role="option"
+                aria-selected={cursor === ind}
               />
             ))}
           </div>

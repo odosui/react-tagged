@@ -1,5 +1,6 @@
 {
   "name": "react-tagged",
+  "version": "1.2.0",
   "module": "dist/react-tagged.mjs",
   "main": "dist/react-tagged.umd.js",
   "exports": {
@@ -13,7 +14,6 @@
     }
   },
   "types": "dist/index.d.ts",
-  "version": "1.1.1",
   "description": "A robust tags input for React with TypeScript.",
   "repository": {
     "type": "git",
